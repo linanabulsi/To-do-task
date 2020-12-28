@@ -1,0 +1,54 @@
+.to-do {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 6px;
+  /* background-color: blueviolet; */
+  /* border: 2px solid blue; */
+  height: 80px;
+  width: 230px;
+  padding: 8px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* background-color: aqua; */
+}
+
+/* .col p{
+    background-color: blue; 
+} */
+
+.to-do-card-important {
+  background-color: rgb(245, 190, 168);
+  border: 2px solid rgb(224, 166, 41);
+}
+
+.to-do-card-normal {
+  background-color: rgb(143, 192, 143);
+  border: 2px solid  rgb(74, 177, 74);
+}
+
+.to-do-card-urgent {
+  background-color: rgb(238, 150, 150);
+  border: 2px solid rgb(182, 61, 61);
+}
+
+.sev {
+    position: relative;
+    /* margin-top: 22px; */
+    border-radius: 5px;
+}
+
+.severity-important {
+    background-color:rgb(224, 166, 41);
+  }
+  
+  .severity-normal {
+    background-color:rgb(74, 177, 74);
+  }
+  
+  .severity-urgent {
+    background-color:rgb(182, 61, 61);
+  }
