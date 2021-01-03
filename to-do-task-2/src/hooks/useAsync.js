@@ -5,6 +5,7 @@ const actionTypes = {
   ON_LOADING: "ON_LOADING",
   ON_SUCCESS: "ON_SUCCESS",
   ON_ERROR: "ON_ERROR",
+  ON_CHANGE_URL: "ON_CHANGE_URL",
 };
 
 function asyncReducer(prevState, action) {
@@ -26,10 +27,41 @@ function asyncReducer(prevState, action) {
         status: "error",
         error: action.payload.error,
       };
+    case actionTypes.ON_CHANGE_URL:
+      return {
+        ...prevState,
+        url: action.payload.url,
+      };
     default:
       throw new Error("action not defined");
   }
 }
+
+export const useBetterAsync = (initialState) => {
+  const [{ url, ...state }, dispatch] = React.useReducer(asyncReducer, {
+    data: null,
+    error: null,
+    status: "idle",
+    url: "",
+    ...initialState,
+  });
+  const run = (asyncCallback) => {
+    dispatch({ type: actionTypes.ON_LOADING });
+    asyncCallback().then(
+      (data) => {
+        dispatch({
+          type: actionTypes.ON_SUCCESS,
+          payload: { data: data },
+        });
+      },
+      (error) => {
+        dispatch({ type: actionTypes.ON_ERROR, payload: { error } });
+      }
+    );
+  };
+
+  return { run, ...state };
+};
 
 export const useAsync = (initialUrl, initialData) => {
   const [url, setUrl] = React.useState(initialUrl);
@@ -37,7 +69,7 @@ export const useAsync = (initialUrl, initialData) => {
     data: initialData,
     error: null,
     status: "idle",
-    url: initialUrl
+    // url: initialUrl
   });
 
   React.useEffect(() => {

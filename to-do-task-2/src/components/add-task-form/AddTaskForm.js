@@ -1,76 +1,66 @@
 import {
   Button,
-  Flex,
   FormControl,
   FormLabel,
   Input,
   Select,
-  Text,
 } from "@chakra-ui/react";
 import React from "react";
 
-export default function AddTaskForm() {
-  var date = new Date().toDateString();
-  const [todo, setTodo] = React.useState({
-    title: "",
-    severity: "Normal",
-    progress: "to-do",
-    date,
-    description: ""
-  });
+const initialState = {
+  title: "",
+  severity: "Normal",
+  progress: "to-do",
+  date: new Date().toDateString(),
+  description: "",
+};
 
-console.log(todo);
+export default function AddTaskForm({ onSubmit, isSubmitting, isSuccess }) {
+  const [todo, setTodo] = React.useState(initialState);
 
-  const createToDo = async (e) => {
+  const handleSumbit = (e) => {
     e.preventDefault();
-    await fetch('http://localhost:5000/todos', {
-      method: 'POST',
-      body: JSON.stringify(todo),
-      headers: { 'Content-Type': 'application/json' }
-    })
+    onSubmit(todo);
   };
 
+  React.useEffect(() => {
+    isSuccess && setTodo(initialState);
+    console.log(isSuccess);
+  }, [isSuccess]);
+
   return (
-    <FormControl
-      id="add-task-form"
-      width="400px"
-      p="4"
-      border="2px solid"
-      borderColor="gray.200"
-      borderRadius="5px"
-      boxShadow="xl"
-      // zIndex=""
-      bg="white"
-      pos="absolute"
-    >
-      <Text fontSize="20px" fontWeight="bold" textAlign="left">
-        Add Task
-      </Text>
-      <FormLabel pt="10px">Name</FormLabel>
-      <Input bg="gray.50" onChange={e => setTodo({ ...todo, title: e.target.value })} />
-      <FormLabel pt="10px">Description</FormLabel>
-      <Input bg="gray.50" onChange={e => setTodo({ ...todo, description: e.target.value })}/>
-      <FormLabel pt="10px">Severity</FormLabel>
-      <Select bg="gray.50" _selected="Normal" onChange={e => setTodo({ ...todo, severity: e.target.value })}>
-        <option>Normal</option>
-        <option>Important</option>
-        <option>Urgent</option>
-      </Select>
-      <Flex justify="flex-end" mt={4}>
-        <Button
-          onClick={createToDo}
-          mt={4}
-          colorScheme="teal"
-          variant="solid"
-          type="submit"
-          mr={1}
+    <form onSubmit={handleSumbit}>
+      <FormControl>
+        <FormLabel pt="10px">Name</FormLabel>
+        <Input
+          value={todo.title}
+          bg="gray.50"
+          onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel pt="10px">Description</FormLabel>
+        <Input
+          value={todo.description}
+          bg="gray.50"
+          onChange={(e) => setTodo({ ...todo, description: e.target.value })}
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel pt="10px">Severity</FormLabel>
+        <Select
+          value={todo.severity}
+          bg="gray.50"
+          onChange={(e) => setTodo({ ...todo, severity: e.target.value })}
         >
-          Add
-        </Button>
-        <Button mt={4} colorScheme="teal" variant="ghost">
-          Cancel
-        </Button>
-      </Flex>
-    </FormControl>
+          <option>Normal</option>
+          <option>Important</option>
+          <option>Urgent</option>
+        </Select>
+      </FormControl>
+      <Button type="submit" disabled={isSubmitting}>
+        Add to-do
+      </Button>
+    </form>
   );
 }
