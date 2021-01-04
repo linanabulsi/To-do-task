@@ -1,0 +1,76 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Task #1",
+      "severity": "Urgent",
+      "progress": "done",
+      "date": "Wed Aug 05 2020",
+      "description": "Something"
+    },
+    {
+      "id": 2,
+      "title": "Task #2",
+      "severity": "Normal",
+      "progress": "done",
+      "date": "Wed Aug 05 2020",
+      "description": "Something"
+    },
+    {
+      "id": 3,
+      "title": "Task #3",
+      "severity": "Urgent",
+      "progress": "in-progress",
+      "date": "Wed Aug 05 2020",
+      "description": "Something"
+    },
+    {
+      "id": 4,
+      "title": "Task #4",
+      "severity": "Urgent",
+      "progress": "to-do",
+      "date": "Wed Aug 05 2020",
+      "description": "Something"
+    },
+    {
+      "id": 5,
+      "title": "Task #6",
+      "severity": "Important",
+      "progress": "in-progress",
+      "date": "Wed Aug 05 2020",
+      "description": "Something"
+    },
+    {
+      "id": 6,
+      "title": "Task #7",
+      "severity": "Normal",
+      "progress": "to-do",
+      "date": "Wed Aug 05 2020",
+      "description": "Something"
+    },
+    {
+      "title": "Task #10",
+      "severity": "Important",
+      "progress": "to-do",
+      "date": "Wed Aug 05 2020",
+      "description": "Somethingg",
+      "id": 7
+    },
+    {
+      "title": "Task #20",
+      "severity": "Urgent",
+      "progress": "done",
+      "date": "Wed Aug 05 2020",
+      "description": "Something",
+      "id": 8
+    },
+    {
+      "title": "Task #11",
+      "severity": "Normal",
+      "progress": "to-do",
+      "date": "Thu Dec 31 2020",
+      "description": "Anythingg",
+      "id": 9
+    }
+  ]
+}
