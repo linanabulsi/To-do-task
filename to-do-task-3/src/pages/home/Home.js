@@ -24,8 +24,6 @@ export function Home() {
     {}
   );
 
-  console.log('data', data);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const {
@@ -45,7 +43,7 @@ export function Home() {
       return result;
     });
     onClose();////////////
-    history.push('/h');////////////
+    history.push('/');////////////
   };
 
   React.useEffect(() => {
